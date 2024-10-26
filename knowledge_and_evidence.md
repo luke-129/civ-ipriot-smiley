@@ -142,35 +142,49 @@ python3 main.py
 
 5. Examining `smiley.py`, provide an example of a class variable and an instance variable (attribute). Explain **why** one is defined as a class variable and the other as an instance variable.
 
-> Your answer here
+> A class variable would be the const tuples WHITE,RED, etc. This is a class variable as all instances will have a default value that doesn't change (hence the const) for rgb &
+> why it is a class variable. You wouldn't want RBG values to change so you definitely wouldn't set it is an attribute so different instances of smiley have different rgb values. 
+> 
+> An attribute is instantiated, so every instance of smiley could have different versions of the attributes. The pixels list in smiley is an instance variable so that different versions of 
+> smiley can be instatied, different instances can have different colours in that list.
 >
 
 6. Examine `happy.py`, and identify the constructor (initializer) for the `Happy` class:
    1. What is the purpose of a constructor (in general) and this one (in particular)?
 
-   > Your answer here
+   > A constructor allows logic to be executed as soon as the object is created, this allows the constructor to set values or call functions to have some default functionality
+   > created. 
+   > 
+   > Super is called at the start so the parent class can assign values and call functions that will be required for happy. 
    >
+>   As it is a happy class methods to draw the smile and eyes are called as the object is created. 
 
    2. What statement(s) does it execute (consider the `super` call), and what is the result?
 
-   > Your answer here
+   > the super method is called so any logic called within the constructor in smiley(the parent) will be called and happy will use this data.
+> 
+>   the draw_mouth() and draw_eyes() methods are called which uses the values set when calling the super method, resulting in the happy face. 
    >
 
 ### Code style
 
 1. What code style is used in the code? Is it likely to be the same as the code style used in the SenseHat? Give to reasons as to why/why not:
    
-> Your answer here
+> The style used in this code is PEP8. This is a common code style so it is more than likely sensehat uses the same code style. Since this code
+> imports sensehat it would make sense to use the same code style. When importing sense_hat the snake case is used indicating PEP8 could be used. 
 >
 
 2. List three aspects of this convention you see applied in the code.
 
-> Your answer here
+> Snake casing
+> Imports on seperate lines
+> 4 spaces for indentation
 >
 
 3. Give two examples of organizational documentation in the code.
 
-> Your answer here
+> Comments
+> Docstrings
 >
 
 ### Identifying and understanding classes
@@ -181,19 +195,30 @@ python3 main.py
   
   Use the following table for your answers:
 
-| Class Name | Super or Sub? | Direct parent(s) |
-| ---------- | ------------- | ---------------- |
-| NotReal    | Sub           | NotRealParent    |
-|   ...      |   ...         |      ...         |
+| Class Name | Super or Sub? | Direct parent(s)  |
+|------------|---------------|-------------------|
+| Smiley     | sub           | Object            |
+| Blinkable  | sub           | ABC               |
+| Happy      | sub           | Smiley, Blinkable |
+| Sad        | sub           | Smiley            |
 
 2. Explain the concept of abstraction, giving an example from the project (note "implementing an ABC" is **not** in itself an example of abstraction). (Max 150 words)
 
-> Your answer here
+> Abstraction is a way of taking a bunch of details like attributes, functions, values and converting it into a more simple, readable and understandable details
+> to hide any unnecssary complexity. Abstraction allows the programmer to start implementing their own logic without having to worry about the complexity behind the abstraction.
+> 
+> An example of abstraction in the project is the blink method. In main.py the blink method is called in main() by doing smiley.blink(). 
+> When you want to make the face blink, you just simply want to make it blink. You don't care about all the complexities underneath and how it works. You just want it to blink at a certain
+> time.
 >
 
 3. What is the name of the process of deriving from base classes? What is its purpose in this project? (Max 150 words)
 
-> Your answer here
+> This is called inheritance and generalization. 
+> The purpose for inheritance in this project is to have one super class that initializes al the default data to output a face.
+> The child classes then inherit all of those attributes and methods and implements it's own functionality to either make the face happy or sad.
+> This allows different types of objects to be created.
+> This allows the code to be reusable, structured and ensures uniform default attributes/methods to prevent bugs.
 >
 
 ### Compare and contrast classes
@@ -201,25 +226,25 @@ python3 main.py
 Compare and contrast the classes Happy and Sad.
 
 1. What is the key difference between the two classes?
-   > Your answer here
+   > Happy inehrits from the abstract class blinkable. 
    >
 2. What are the key similarities?
-   > Your answer here
+   > They both implement draw_mouth() & draw_eyes() methods and call the methods in the constructor. 
    >
 3. What difference stands out the most to you and why?
-   > Your answer here
+   > The extra method in happy stands out to me more as it's obvious there is more functionality in happy. 
    >
 4. How does this difference affect the functionality of these classes
-   > Your answer here
+   > Objects instantiated from happy can blink while sad objects cannot blink.
    >
 
 ### Where is the Sense(Hat) in the code?
 
 1. Which class(es) utilize the functionality of the SenseHat?
-   > Your answer here
+   > Smiley and it's children happy & sad.
    >
 2. Which of these classes directly interact with the SenseHat functionalities?
-   > Your answer here
+   > Smiley
    >
 3. Discuss the hiding of the SenseHAT in terms of encapsulation (100-200 Words)
    > Your answer here
@@ -233,12 +258,12 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 1. Does the code's author believe that every `Smiley` should be able to blink? Explain.
 
-> Your answer here
+> No because if the uathor wanted every smiley to blink, smiley would inherit blinkable and the blink method. 
 >
 
 2. For those smileys that blink, does the author expect them to blink in the same way? Explain.
 
-> Your answer here
+> No because there is a delay argument that can change the delay between blinks. 
 >
 
 3. Referring to the implementation of blink in the Happy and Sad Smiley classes, give a brief explanation of what polymorphism is.
