@@ -125,11 +125,11 @@ python3 main.py
 
 3. Examine the code for `smiley.py`, `sad.py`, and `happy.py`. Give an example of each of the following control structures using an example from **each** of these files. Include the first line and the line range:
 
-   | Control Flow | File      | First line | Line range |
-   |-----------|------------|------------| ----------- |
-   |  sequence    | smiley.py | 1          | 40         |
-   |  selection   | sad.py    | 26         | 29         |
-   |  iteration   | happy.py  | 30         | 31         |
+   | Control Flow | File      | First line                     | Line range   |
+   |-----------|--------------------------------|--------------| -----------  |
+   |  sequence    | smiley.py | from sense_hat import SenseHat | 40           |
+   |  selection   | sad.py    | if wide_open:                  | 31           |
+   |  iteration   | happy.py  | for pixel in eyes:             | 30           |
 
 4. Though everything in Python is an object, it is sometimes said to have four "primitive" types. Examining the three files `smiley.py`, `sad.py`, and `happy.py`, identify which of the following types are used in any of these files, and give an example of each (use an example from the code, if applicable, otherwise provide an example of your own):
 
@@ -146,7 +146,7 @@ python3 main.py
 > why it is a class variable. You wouldn't want RBG values to change so you definitely wouldn't set it is an attribute so different instances of smiley have different rgb values. 
 > 
 > An attribute is instantiated, so every instance of smiley could have different versions of the attributes. The pixels list in smiley is an instance variable so that different versions of 
-> smiley can be instatied, different instances can have different colours in that list.
+> smiley can be instantiated, different instances can have different colours in that list.
 >
 
 6. Examine `happy.py`, and identify the constructor (initializer) for the `Happy` class:
@@ -247,7 +247,11 @@ Compare and contrast the classes Happy and Sad.
    > Smiley
    >
 3. Discuss the hiding of the SenseHAT in terms of encapsulation (100-200 Words)
-   > Your answer here
+   > SenseHat is instantiated within the smiley class, it is now an attribute that cannot be accessed without the smiley class.
+   > When an object is created such as face = Smiley() a sense_hat is now instantiated within face.
+   > To access sense_hat we could do face.sense_hat and this would allow access. 
+   > Trying to access sense_hat on it own will throw an error as it won't know about the instantiated sense_hat. 
+   > This isn't encapsulated privately still though, if we wanted sense_hat to only be accessed within the class we would have to use te _ or __ to make it private and define some getter and setter methods if required. 
    >
 
 ### Sad Smileys Can’t Blink (Or Can They?)
@@ -258,7 +262,7 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 1. Does the code's author believe that every `Smiley` should be able to blink? Explain.
 
-> No because if the uathor wanted every smiley to blink, smiley would inherit blinkable and the blink method. 
+> No because if the author wanted every smiley to blink, smiley would inherit blinkable and the blink method. 
 >
 
 2. For those smileys that blink, does the author expect them to blink in the same way? Explain.
@@ -268,12 +272,14 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 3. Referring to the implementation of blink in the Happy and Sad Smiley classes, give a brief explanation of what polymorphism is.
 
-> Your answer here
+> Polymorphism is where classes, methods, and attributes can be used in many forms. The blink method is polymorphic as
+> sad and happy both use the same method but with their own functionality. 
 >
 
 4. How is inheritance used in the blink method, and why is it important for polymorphism?
 
-> Your answer here
+> Each class that inherits from blinkable also inherits the blink method and must have their own implementation for blink.
+> This is important as instances of a child class can be treated as an object of the super class, allowing for polymorphism. 
 >
 1. **Implement Blink in Sad Class:**
 
@@ -321,7 +327,7 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
   5. **Concept and Language Specificity:** In relation to your response to question (4), what is this capability known as, and why is it feasible in Python and many other dynamically typed languages but not in most statically typed programming languages like C#? **Clue** This concept is hinted at in the title of this section.
 
-  > In python you can implement multi inheritance but in c# for example you cannot as it does not allow multi inheritence. As you cannot usem ulti inheritence you would have to use another alternative such as interfaces to avoid
+  > In python you can implement multi inheritance but in c# for example you cannot as it does not allow multi inheritance. As you cannot use multi inheritance you would have to use another alternative such as interfaces to avoid
   > having to re write code for each class making the code prone to bugs later down the line. 
 
   ***
