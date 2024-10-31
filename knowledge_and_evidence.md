@@ -226,7 +226,7 @@ python3 main.py
 Compare and contrast the classes Happy and Sad.
 
 1. What is the key difference between the two classes?
-   > Happy inehrits from the abstract class blinkable. 
+   > Happy inherits from the abstract class blinkable. 
    >
 2. What are the key similarities?
    > They both implement draw_mouth() & draw_eyes() methods and call the methods in the constructor. 
@@ -244,14 +244,14 @@ Compare and contrast the classes Happy and Sad.
    > Smiley and it's children happy & sad.
    >
 2. Which of these classes directly interact with the SenseHat functionalities?
-   > Smiley
+   > Smiley as it instantiates a SenseHat. 
    >
 3. Discuss the hiding of the SenseHAT in terms of encapsulation (100-200 Words)
    > SenseHat is instantiated within the smiley class, it is now an attribute that cannot be accessed without the smiley class.
    > When an object is created such as face = Smiley() a sense_hat is now instantiated within face.
    > To access sense_hat we could do face.sense_hat and this would allow access. 
    > Trying to access sense_hat on it own will throw an error as it won't know about the instantiated sense_hat. 
-   > This isn't encapsulated privately still though, if we wanted sense_hat to only be accessed within the class we would have to use te _ or __ to make it private and define some getter and setter methods if required. 
+   > This isn't encapsulated 'privately' still though, if we wanted sense_hat to only be accessed within the class we would have to use te _ or __ to make it 'private' and define some getter and setter methods if required. 
    >
 
 ### Sad Smileys Can’t Blink (Or Can They?)
@@ -273,13 +273,14 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 3. Referring to the implementation of blink in the Happy and Sad Smiley classes, give a brief explanation of what polymorphism is.
 
 > Polymorphism is where classes, methods, and attributes can be used in many forms. The blink method is polymorphic as
-> sad and happy both use the same method but with their own functionality. 
+> sad and happy both use the same method but with their own functionality, therefore being used in different 'forms'. 
 >
 
 4. How is inheritance used in the blink method, and why is it important for polymorphism?
 
 > Each class that inherits from blinkable also inherits the blink method and must have their own implementation for blink.
 > This is important as instances of a child class can be treated as an object of the super class, allowing for polymorphism. 
+> For example you could implement functionality for all objects that are a smiley to call the blink function, without having to know the object type Happy for example.
 >
 1. **Implement Blink in Sad Class:**
 

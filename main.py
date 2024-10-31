@@ -9,14 +9,13 @@ from sad import Sad
 from blinkable import Blinkable
 from angry import Angry
 def main():
-    smiley = Angry()
+    smiley = Sad()
 
     smiley.show()
 
     time.sleep(1)
 
-    #smiley.blink()
-
+    smiley.blink()
 
 
 if __name__ == '__main__':

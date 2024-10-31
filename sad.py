@@ -31,7 +31,14 @@ class Sad(Smiley, Blinkable):
                 eyes = self.complexion()
             self.pixels[pixel] = eyes
 
-    def blink(self, delay=0.2):
+    def blink(self, delay=0.1):
+        self.draw_eyes(wide_open=False)
+        self.show()
+        time.sleep(delay)
+        self.draw_eyes(wide_open=True)
+        self.show()
+        time.sleep(delay)
+        time.sleep(delay)
         self.draw_eyes(wide_open=False)
         self.show()
         time.sleep(delay)
