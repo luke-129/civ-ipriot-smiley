@@ -125,18 +125,18 @@ python3 main.py
 
 3. Examine the code for `smiley.py`, `sad.py`, and `happy.py`. Give an example of each of the following control structures using an example from **each** of these files. Include the first line and the line range:
 
-   | Control Flow | File      | First line                     | Line range   |
-   |-----------|--------------------------------|--------------| -----------  |
-   |  sequence    | smiley.py | from sense_hat import SenseHat | 40           |
-   |  selection   | sad.py    | if wide_open:                  | 31           |
-   |  iteration   | happy.py  | for pixel in eyes:             | 30           |
+   | Control Flow | File      | First line                     | Line range |
+   |-----------|--------------------------------|------------| -----------  |
+   |  sequence    | smiley.py | self.sense_hat = SenseHat() | 18         |
+   |  selection   | sad.py    | if wide_open:                  | 31         |
+   |  iteration   | happy.py  | for pixel in eyes:             | 30         |
 
 4. Though everything in Python is an object, it is sometimes said to have four "primitive" types. Examining the three files `smiley.py`, `sad.py`, and `happy.py`, identify which of the following types are used in any of these files, and give an example of each (use an example from the code, if applicable, otherwise provide an example of your own):
 
    | Type                    | Used?     | Example                 |
    |-----------|-------------------------| --------                |
    | int                     | sad.py    | for pixel               |
-   | float                   | N/A       | number = 5.0            |
+   | float                   | happy.py  | def blink(self, delay=0.1):          |
    | str                     | N/A       | word = "this is a string" |
    | bool                    | smiley.py | dimmed = true           |
 
@@ -161,9 +161,9 @@ python3 main.py
 
    2. What statement(s) does it execute (consider the `super` call), and what is the result?
 
-   > the super method is called so any logic called within the constructor in smiley(the parent) will be called and happy will use this data.
+   > the super method is called on __init__ so any logic called within the constructor in smiley(the parent) will be called and happy will use this data.
 > 
->   the draw_mouth() and draw_eyes() methods are called which uses the values set when calling the super method, resulting in the happy face. 
+>   the draw_mouth() and draw_eyes() methods are called which uses the instance values set when calling the super method, resulting in the happy face. 
    >
 
 ### Code style
@@ -311,7 +311,9 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
   1. **Class Type Analysis:** What kind of class is `Blinkable`? Inspect its superclass for clues about its classification.
 
-     > it is an ABCMeta class. 
+     > It is a class that inherits from ABC therefore it could be implemented as an interface or abastract or a mix of both. With the way it's implemented
+>       now with a singular abstract method, I would say it is an interface. Classes that inherit from blinkable are forced to provide
+>       their own implementation of blink, which is very interface-like. 
 
   2. **Class Implementation:** `Blinkable` is a class intended to be implemented by other classes. What generic term describes this kind of class, which is designed for implementation by others? **Clue**: Notice the lack of any concrete implementation and the naming convention.
 
@@ -328,9 +330,11 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
   5. **Concept and Language Specificity:** In relation to your response to question (4), what is this capability known as, and why is it feasible in Python and many other dynamically typed languages but not in most statically typed programming languages like C#? **Clue** This concept is hinted at in the title of this section.
 
-  > In python you can implement multi inheritance but in c# for example you cannot as it does not allow multi inheritance. As you cannot use multi inheritance you would have to use another alternative such as interfaces to avoid
-  > having to re write code for each class making the code prone to bugs later down the line. 
-
+  > I said in my answer for Q4, that you could simply just copy/paste the code from blinkable into Sad as Sad would have to provide its own implementation.
+> By Sad having its own implementation without inheriting from Smiley, you could make Sad blink via Duck typing. For example; a for loop with an array of objects including
+  a Sad object, and while iterating and calling the blink method. This would make the Sad blink as it meets the minimum requirements to allow for duck typing. 
+  > 
+> This is not possible in static languages as they compile and check the types during compile time, so this would result in an error as the compiler will become confused and say "hang on, this Horse object you are trying to say is of type Duck, but it doesn't match the Duck type?!?!?"
   ***
 
   ## Refactoring
